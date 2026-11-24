@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda de la Radio Escolar</title>
+  <link rel="stylesheet" href="estilos.css">
+  <!-- Librería oficial de Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header>
+    <h1>🎙️ Agenda de la Radio Escolar</h1>
+    <p>Colegio Nacional EMD Asunción Escalada - BTI</p>
+  </header>
+
+  <main class="contenedor">
+    <!-- Formulario para Crear y Modificar -->
+    <section class="tarjeta">
+      <h2 id="titulo-formulario">Registrar nuevo programa</h2>
+      <form id="form-programa">
+        <input type="hidden" id="programa-id">
+
+        <div class="campo">
+          <label for="programa">Nombre del Programa:</label>
+          <input type="text" id="programa" placeholder="Ej: Recreo Musical" required>
+        </div>
+
+        <div class="campo">
+          <label for="genero">Género:</label>
+          <select id="genero" required>
+            <option value="">Seleccioná un género...</option>
+            <option value="musical">Musical</option>
+            <option value="entrevista">Entrevista</option>
+            <option value="informativo">Informativo</option>
+            <option value="debate">Debate</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="alias">Alias del Conductor:</label>
+          <input type="text" id="alias" placeholder="Ej: DJ Leryn" required>
+        </div>
+
+        <div class="fila-doble">
+          <div class="campo">
+            <label for="fecha">Fecha de emisión:</label>
+            <input type="date" id="fecha" required>
+          </div>
+
+          <div class="campo">
+            <label for="duracion">Duración (minutos):</label>
+            <input type="number" id="duracion" min="1" placeholder="Ej: 45" required>
+          </div>
+        </div>
+
+        <div class="botones-form">
+          <button type="submit" id="btn-guardar" class="btn-primario">Guardar Programa</button>
+          <button type="button" id="btn-cancelar" class="btn-secundario oculto">Cancelar Edición</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Listado y Filtro por Género -->
+    <section class="tarjeta">
+      <div class="cabecera-lista">
+        <h2>Programación Registrada</h2>
+        <div class="filtro-caja">
+          <label for="filtro-genero">Filtrar por género:</label>
+          <select id="filtro-genero">
+            <option value="todos">Todos los géneros</option>
+            <option value="musical">Musical</option>
+            <option value="entrevista">Entrevista</option>
+            <option value="informativo">Informativo</option>
+            <option value="debate">Debate</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="tabla-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Programa</th>
+              <th>Género</th>
+              <th>Conductor</th>
+              <th>Fecha</th>
+              <th>Duración</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="lista-programas">
+            <!-- Los datos se cargan desde Supabase -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
